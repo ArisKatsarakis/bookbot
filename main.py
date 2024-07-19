@@ -1,8 +1,11 @@
+
+books_dicretory = './books/frankenstein.txt'
 def read_file(): 
     books_dicretory = './books/frankenstein.txt'
     with open(books_dicretory) as f:
         file_contents = f.read()
         return file_contents
+
 def character_found(file):
     chars_dictionary = { }
     for i in range(97, 123):
@@ -13,9 +16,18 @@ def character_found(file):
             chars_dictionary[x] = chars_dictionary[x] + 1 
     return chars_dictionary
 
+def generate_report(count, occurance_dictionary):
+    print(f"--- Begin report of {books_dicretory} ---")
+    print(f"{count} words found in the document \n \n")
+    for x in occurance_dictionary:
+        print(f"The '{x}' character was found {occurance_dictionary[x]}  times")
+
 
 def count_words(file):
-    return file.split()
+    return len(file.split())
 
-if __name__ == "__main__":
-    print(character_found(read_file()))
+if __name__ == "__main__":  
+    file = read_file()
+    count = count_words(file)
+    occurance_dictionary = character_found(file)
+    generate_report(count, occurance_dictionary)
